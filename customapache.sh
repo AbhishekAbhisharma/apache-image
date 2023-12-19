@@ -1,7 +1,6 @@
 #!/bin/bash
 ls
 #Navigate to the directory containing your Dockerfile and application code
-cd apache-image
 ls
 # Build the Docker image
 sudo build -t abc .
