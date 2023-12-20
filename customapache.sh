@@ -1,19 +1,16 @@
 #!/bin/bash
 ls
 # Specify the port number
-port_to_check=6000
+port=6000
 # Find the container ID of the running container on the specified port
-container_id=$(docker ps -a --filter "publish=${port_to_check}:80" --format "{{.ID}}")
-if [ -z "$container_id" ]; then
-  echo "No container found running on port $port_to_check."
-  exit 1
-fi
-# Stop the running container
-docker stop "$container_id"
+EXISTING_CONTAINER=$(docker ps -q -f "publish=${PORT}")
 
-# Remove the stopped container
-docker rm "$container_id"
-echo "Container on port $port_to_check stopped and removed."
+if [ -n "${EXISTING_CONTAINER}" ]; then
+    # If a container is running, stop and remove it
+    docker stop ${EXISTING_CONTAINER}
+    docker rm ${EXISTING_CONTAINER}
+    echo "Existing container stopped and removed"
+fi
 
 # Build the Docker image
 sudo docker build -t abc .
