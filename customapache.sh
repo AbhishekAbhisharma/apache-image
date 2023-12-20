@@ -1,7 +1,7 @@
 #!/bin/bash
 ls
 # Specify the port number
-port=6000
+port=9000
 # Find the container ID of the running container on the specified port
 EXISTING_CONTAINER=$(docker ps -q -f "publish=${PORT}")
 
