@@ -3,7 +3,7 @@ ls
 # Specify the port number
 port=9000
 # Find the container ID of the running container on the specified port
-EXISTING_CONTAINER=$(docker ps -q -f "publish=${PORT}")
+EXISTING_CONTAINER=$(docker ps -q -f "publish=${port}")
 
 if [ -n "${EXISTING_CONTAINER}" ]; then
     # If a container is running, stop and remove it
